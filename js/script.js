@@ -5,9 +5,9 @@
     const  header = document.querySelector('.header');
     window.onscroll = () => {
         if(window.pageYOffset > 50) { /*Если от верха проскроллили на 50px выполняем след действие*/ 
-            header.classList.add('header_active');/*Здесь точка перед классом не нужна*/ 
+            header.classList.add('header__active');/*Здесь точка перед классом не нужна*/ 
         }else{
-            header.classList.remove('header_active');/*Здесь точка перед классом не нужна*/
+            header.classList.remove('header__active');/*Здесь точка перед классом не нужна*/
         }
     };
 }());
@@ -18,14 +18,22 @@
 
 (function () {
     const burgerItem = document.querySelector('.burger');
-    const menu = document.querySelector('.header_menu');
-    const menuCloseItem = document.querySelector('.header_menu-close');
+    const menu = document.querySelector('.header__menu');
+    const menuCloseItem = document.querySelector('.header__menu-close');
+    const menuLinks = document.querySelectorAll('.header__link');
     burgerItem.addEventListener('click', () => {
-        menu.classList.add('header_menu_active');
+        menu.classList.add('header__menu_active');
     });
     menuCloseItem.addEventListener('click', () => {
-        menu.classList.remove('header_menu_active');
+        menu.classList.remove('header__menu_active');
     });
+    if (window.innerWidth <= 767) {
+        for (let i = 0; i < menuLinks.length; i += 1) {
+            menuLinks[i].addEventListener('click', () => {
+                menu.classList.remove('header__menu_active');
+            });
+        }
+    }
 }());
 
 /*Adaptive menu end*/
